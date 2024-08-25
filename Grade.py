@@ -1,49 +1,35 @@
 subject_list = []
 grade_list = []
 w_list = []
-sum_temp = []
-w_sum = 0
-sum = 0
-result = 0
 
 while True:
     print()
-    print()
-    subject = input("Subject : ")
+    subject = input("Enter the subject (or 'n' to finish): ")
     
-    if subject == "n":
+    if subject.lower() == "n":
         break
     
-    grade = float(input("Grade : "))
-    weight = float(input("Weight : "))
+    grade = float(input("Enter the grade: "))
+    weight = float(input("Enter the weight: "))
     print()
     
     subject_list.append(subject)
     grade_list.append(grade)
     w_list.append(weight)
-    
 
-for i in range(len(grade_list)):
-    sum_temp.append(grade_list[i] * w_list[i])
-    
-for k in range(len(sum_temp)):
-    sum += sum_temp[k]
-    
-for j in range(len(w_list)):
-    w_sum += w_list[j]
-    
-result = float(sum / w_sum)
+# Calculate the GPA
+sum_temp = [grade_list[i] * w_list[i] for i in range(len(grade_list))]
+sum_grades = sum(sum_temp)
+w_sum = sum(w_list)
 
-print("_________________ Result _________________")
-print()
+result = sum_grades / w_sum
+
+# Display the results
+print("\n_________________ Result _________________\n")
 
 for i in range(len(subject_list)):
-    print("\t")
     print(f"\t{i + 1}. {subject_list[i]} : {grade_list[i]}")
-    print("\t")
     
-print("__________________________________________")
-
-print()
-print(f"\tGPA : {result}")
+print("\n__________________________________________\n")
+print(f"\tGPA : {result:.2f}")
 print()
